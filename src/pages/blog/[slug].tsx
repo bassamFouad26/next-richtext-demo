@@ -1,45 +1,32 @@
-import {client} from "../../client"
-import {allBlogArticle} from "../../allBlogArticle"
+import { client } from "../../client";
+import { allBlogArticle } from "../../gql/query/allBlogArticle";
 import { RichTextRenderer } from "@caisy/rich-text-react-renderer";
 
-
-export default function blog({allBlogArticle}) {
+export default function blog({ allBlogArticle }) {
   return (
     <div>
-        <RichText content={allBlogArticle?.node?.text?.json?.content} />
+      <RichText content={allBlogArticle?.node?.text?.json?.content} />
     </div>
-  )
+  );
 }
 
-
-
-// This block could be exported from utils folder , acting as a global function 
- const RichText = ({ content }) => {
-  return (
-    <>
-      <RichTextRenderer node={{ type: "doc", content }} />
-    </>
-  );
+// This block could be exported from utils folder , acting as a global function
+const RichText = ({ content }) => {
+  return <RichTextRenderer node={{ type: "doc", content }} />;
 };
 
-
-
-export async function getStaticProps({params:{slug}}) {
-  const res= await  client.query({
-        query: allBlogArticle,
-        variables:{slug},
-        fetchPolicy: "no-cache",
-      })
+export async function getStaticProps({ params: { slug } }) {
+  const res = await client.query({
+    query: allBlogArticle,
+    variables: { slug },
+    fetchPolicy: "no-cache",
+  });
   return {
     props: {
-      allBlogArticle:res.data.allBlogArticle.edges[0]
+      allBlogArticle: res.data.allBlogArticle.edges[0],
     }, // will be passed to the page component as props
-  }
+  };
 }
-
-
-
-
 
 export async function getStaticPaths() {
   return {

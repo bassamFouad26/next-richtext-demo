@@ -1,17 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-import Link from "next/Link"
-const inter = Inter({ subsets: ['latin'] })
+import { Inter } from "@next/font/google";
+import Link from "next/Link";
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
-    <button>
-
-     <Link href="/blog/my-first-article">click here</Link>
-    </butto>
-    </>
-  )
+    <a>
+      <Link href="/blog/my-first-article">click here</Link>
+    </a>
+  );
 }

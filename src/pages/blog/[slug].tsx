@@ -2,7 +2,7 @@ import { client } from "../../client";
 import { allBlogArticle } from "../../gql/query/allBlogArticle";
 import { RichTextRenderer } from "@caisy/rich-text-react-renderer";
 
-export default function blog({ allBlogArticle }) {
+export default function BlogPage({ allBlogArticle }) {
   return (
     <div>
       <RichText content={allBlogArticle?.node?.text?.json?.content} />
